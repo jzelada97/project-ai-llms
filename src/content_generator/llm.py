@@ -17,11 +17,16 @@ def get_llm(settings: Settings, max_tokens: int) -> BaseChatModel:
     if settings.provider == "groq":
         from langchain_groq import ChatGroq
 
+        extra = {}
+        if "gpt-oss" in settings.model:
+            # Modelos de razonamiento: sin esto el "pensamiento" consume el tope de tokens
+            extra["reasoning_effort"] = "low"
         return ChatGroq(
             model=settings.model,
             temperature=settings.temperature,
             max_tokens=max_tokens,
             api_key=settings.groq_api_key,
+            **extra,
         )
 
     from langchain_ollama import ChatOllama
