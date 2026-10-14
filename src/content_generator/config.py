@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from dotenv import load_dotenv
 
 DEFAULT_MODELS = {
-    "groq": "llama-3.3-70b-versatile",
+    "groq": "openai/gpt-oss-120b",
     "ollama": "llama3.2",
 }
 DEFAULT_TEMPERATURE = 0.7
